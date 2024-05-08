@@ -1,0 +1,10 @@
+.DS_Store
+*.pyc
+*.swp
+*~
+
+build-clang/
+build-gcc/
+build/
+bii/
+bin/

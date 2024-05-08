@@ -1,0 +1,3 @@
+/Users/kelvin/documents/mongotest/exec/CMakeFiles/exec.dir
+/Users/kelvin/documents/mongotest/exec/CMakeFiles/edit_cache.dir
+/Users/kelvin/documents/mongotest/exec/CMakeFiles/rebuild_cache.dir

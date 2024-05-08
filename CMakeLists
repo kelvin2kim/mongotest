@@ -1,0 +1,42 @@
+cmake_minimum_required(VERSION 3.27)
+project(exec)
+
+set(CMAKE_CXX_STANDARD 17)
+
+#Boost 라이브러리 설치 확인
+#find_package(Boost)
+find_package(Boost REQUIRED COMPONENTS thread json)
+
+list(APPEND CMAKE_PREFIX_PATH "/opt/homebrew/lib/cmake" "/opt/homebrew/include")
+
+find_package(mongocxx REQUIRED)
+
+
+if(Boost_FOUND)
+    # include 패스 설정
+    include_directories(${Boost_INCLUDE_DIRS})
+    link_libraries(${Boost_LIBRARIES})
+endif()
+
+#mongocxx 라이브러리 설치 확인
+if (mongocxx_FOUND)
+include_directories(${MONGOCXX_INCLUDE_DIRS})
+include_directories("/opt/homebrew/lib/cmake/mongocxx-3.10.1/")
+include_directories("/opt/homebrew/lib/cmake/bsoncxx-3.10.1/")
+include_directories("/opt/homebrew/include/mongocxx/v_noabi/")
+include_directories("/opt/homebrew/include/bsoncxx/v_noabi/") 
+include_directories("${PROJECT_SOURCE_DIR}/include/core/include")
+endif()
+
+
+add_executable(exec main.cpp)
+
+
+target_link_libraries(${PROJECT_NAME} 
+  PRIVATE "/opt/homebrew/mongo-cxx/lib/libmongocxx.dylib"
+  PRIVATE "/opt/homebrew/mongo-cxx/lib/libbsoncxx.dylib"
+)
+
+
+
+#target_link_libraries(exec Boost::thread Boost::json mongocxx)
